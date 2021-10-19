@@ -1,0 +1,63 @@
+<div class="container">
+    <mat-toolbar>
+        <span>Agregar Usuario</span>
+    </mat-toolbar>
+
+    <mat-card style="margin-top: 10px;">
+        <form [formGroup]="form">
+            <mat-grid-list cols="1" rowHeight="80px">
+                <mat-grid-tile [colspan]="1" [rowspan]="1">
+                    <mat-form-field appearance="outline" class="ancho">
+                        <mat-label>Código</mat-label>
+                        <input matInput formControlName="cod_usuario" [(ngModel)]="usuario.cod_usuario">
+                    </mat-form-field>
+                </mat-grid-tile>
+                <mat-grid-tile [colspan]="1" [rowspan]="1">
+                    <mat-form-field appearance="outline" class="ancho">
+                        <mat-label>Nombre</mat-label>
+                        <input matInput formControlName="nombre" [(ngModel)]="usuario.nombre">
+                    </mat-form-field>
+                </mat-grid-tile>
+                <mat-grid-tile [colspan]="1" [rowspan]="1">
+                    <mat-form-field appearance="outline" class="ancho">
+                        <mat-label>Usuario</mat-label>
+                        <input matInput formControlName="user" [(ngModel)]="usuario.user">
+                    </mat-form-field>
+                </mat-grid-tile>
+                <mat-grid-tile [colspan]="1" [rowspan]="1">
+                    <mat-form-field appearance="outline" class="ancho">
+                        <mat-label>Password</mat-label>
+                        <input matInput type="password" formControlName="password" [(ngModel)]="usuario.password">
+                    </mat-form-field>
+                </mat-grid-tile>
+                <!-- <mat-grid-tile [colspan]="1" [rowspan]="1" *ngIf="!btnUpdate">
+                    <mat-form-field appearance="outline" class="ancho">
+                        <mat-label>Sucursal</mat-label>
+                        <mat-select formControlName="cod_sucursal">
+                            <mat-option *ngFor="let item of sucursal" [value]="item.cod_sucursal">
+                                {{item.nombre}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </mat-grid-tile> -->
+                <mat-grid-tile [colspan]="1" [rowspan]="1">
+                    <mat-form-field appearance="outline" class="ancho">
+                        <mat-label>Sucursal</mat-label>
+                        <mat-select formControlName="cod_sucursal" [(ngModel)]="usuario.sucursal.cod_sucursal">
+                            <mat-option *ngFor="let item of sucursal" [value]="item.cod_sucursal">
+                                {{item.nombre}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </mat-grid-tile>
+                <mat-grid-tile [colspan]="1" [rowspan]="1">
+                    <button routerLink="/usuario" mat-raised-button style="margin: 0 10px;">Volver</button>
+                    <button type="button" (click)="save()" [disabled]="form.invalid" *ngIf="!btnUpdate"
+                        mat-raised-button style="margin: 0 10px;" color="primary">Registrar</button>
+                    <button type="button" (click)="update()" [disabled]="form.invalid" *ngIf="btnUpdate"
+                        mat-raised-button style="margin: 0 10px;" color="primary">Actualizar</button>
+                </mat-grid-tile>
+            </mat-grid-list>
+        </form>
+    </mat-card>
+</div>

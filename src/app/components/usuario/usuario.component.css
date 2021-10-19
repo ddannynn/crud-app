@@ -1,0 +1,18 @@
+table {
+  width: 100%;
+  margin-top: 10px;
+}
+
+th {
+  width: 20%;
+}
+
+td {
+  background-color: lightgray;
+  color: black;
+}
+
+.pointer {
+  cursor: pointer;
+  padding: 15px;
+}

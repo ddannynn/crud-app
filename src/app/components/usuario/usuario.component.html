@@ -1,0 +1,55 @@
+<div class="container">
+    <mat-toolbar>
+        <span>Usuario</span>
+        <div class="spacer"></div>
+        <button mat-raised-button color="primary" routerLink="/usuario/form">Agregar</button>
+    </mat-toolbar>
+
+    <div *ngIf="usuario.length > 0">
+        <table mat-table [dataSource]="usuario" class="mat-elevation-z8">
+            <!-- Código Column -->
+            <ng-container matColumnDef="cod_usuario">
+                <th mat-header-cell *matHeaderCellDef> Código </th>
+                <td mat-cell *matCellDef="let element"> {{element.cod_usuario}} </td>
+            </ng-container>
+
+            <!-- Nombre Column -->
+            <ng-container matColumnDef="nombre">
+                <th mat-header-cell *matHeaderCellDef> Nombre </th>
+                <td mat-cell *matCellDef="let element"> {{element.nombre}} </td>
+            </ng-container>
+
+            <!-- Usuario Column -->
+            <ng-container matColumnDef="user">
+                <th mat-header-cell *matHeaderCellDef> Usuario </th>
+                <td mat-cell *matCellDef="let element"> {{element.user}} </td>
+            </ng-container>
+
+            <!-- Sucursal Column -->
+            <ng-container matColumnDef="sucursal">
+                <th mat-header-cell *matHeaderCellDef> Sucursal </th>
+                <td mat-cell *matCellDef="let element"> {{element.sucursal.nombre}} </td>
+            </ng-container>
+
+            <!-- Acciones Column -->
+            <ng-container matColumnDef="acciones">
+                <th mat-header-cell *matHeaderCellDef></th>
+                <td mat-cell *matCellDef="let element" style="text-align: right;">
+                    <a class="pointer" [routerLink]="['/usuario/form', element.cod_usuario]" style="color: green;"
+                        matTooltip="Editar">
+                        <mat-icon>edit</mat-icon>
+                    </a>
+                    <a class="pointer" (click)="delete(element.cod_usuario)" style="color: red;" matTooltip="Eliminar">
+                        <mat-icon>delete</mat-icon>
+                    </a>
+                </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+    </div>
+    <div *ngIf="usuario.length == 0" style="margin-top: 10px;">
+        <mat-card>No hay registros para mostrar</mat-card>
+    </div>
+</div>

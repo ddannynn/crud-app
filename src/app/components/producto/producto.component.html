@@ -1,0 +1,49 @@
+<div class="container">
+    <mat-toolbar>
+        <span>Producto</span>
+        <div class="spacer"></div>
+        <button mat-raised-button color="primary" routerLink="/producto/form">Agregar</button>
+    </mat-toolbar>
+
+    <div *ngIf="producto.length > 0">
+        <table mat-table [dataSource]="producto" class="mat-elevation-z8">
+            <!-- Código Column -->
+            <ng-container matColumnDef="cod_producto">
+                <th mat-header-cell *matHeaderCellDef> Código </th>
+                <td mat-cell *matCellDef="let element"> {{element.cod_producto}} </td>
+            </ng-container>
+
+            <!-- Nombre Column -->
+            <ng-container matColumnDef="nombre">
+                <th mat-header-cell *matHeaderCellDef> Nombre </th>
+                <td mat-cell *matCellDef="let element"> {{element.nombre}} </td>
+            </ng-container>
+
+            <!-- Precio Column -->
+            <ng-container matColumnDef="precio">
+                <th mat-header-cell *matHeaderCellDef> Precio </th>
+                <td mat-cell *matCellDef="let element"> {{element.precio | number:'.2-2'}} </td>
+            </ng-container>
+
+            <!-- Acciones Column -->
+            <ng-container matColumnDef="acciones">
+                <th mat-header-cell *matHeaderCellDef></th>
+                <td mat-cell *matCellDef="let element" style="text-align: right;">
+                    <a class="pointer" [routerLink]="['/producto/form', element.cod_producto]" style="color: green;"
+                        matTooltip="Editar">
+                        <mat-icon>edit</mat-icon>
+                    </a>
+                    <a class="pointer" (click)="delete(element.cod_producto)" style="color: red;" matTooltip="Eliminar">
+                        <mat-icon>delete</mat-icon>
+                    </a>
+                </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+    </div>
+    <div *ngIf="producto.length == 0" style="margin-top: 10px;">
+        <mat-card>No hay registros para mostrar</mat-card>
+    </div>
+</div>
